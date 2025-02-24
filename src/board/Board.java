@@ -20,7 +20,6 @@ public class Board {
      */
     public Board() {
         this.board = new Square[HEIGHT][WIDTH];
-        createBoard();
     }
 
     /**

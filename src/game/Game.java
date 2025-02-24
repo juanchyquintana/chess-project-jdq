@@ -32,6 +32,8 @@ public class Game {
      *      * @param chessParams The object holding parsed chess
      */
     public void startGame(Map<String, String> params, ChessParams chessParams) {
+        board.createBoard();
+
         PieceController pieceController = new PieceController(board);
 
         System.out.println("---> Chess Game Started with parameters: " + params.toString() + "\n".toUpperCase());
