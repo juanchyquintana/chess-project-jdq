@@ -2,6 +2,7 @@ package game;
 
 import board.Board;
 import cli.ChessParams;
+import exceptions.ChessGameException;
 import pieces.PieceController;
 import utils.ChessUtils;
 
@@ -25,16 +26,19 @@ public class Game {
 
     /**
      * Inicia la partida de ajedrez con los parámetros especificados.
-     * @param params Un mapa que contiene los parámetros del juego.
+     *
+     * @param params      Un mapa que contiene los parámetros del juego.
      * @param chessParams El objeto que contiene los parámetros de ajedrez analizados.
-     * Starts the chess game with the specified parameters.
-     *      * @param params A map containing the game parameters.
-     *      * @param chessParams The object holding parsed chess
+     *                    Starts the chess game with the specified parameters.
+     *                    * @param params A map containing the game parameters.
+     *                    * @param chessParams The object holding parsed chess
      */
     public void startGame(Map<String, String> params, ChessParams chessParams) {
+        board.createBoard();
+
         PieceController pieceController = new PieceController(board);
 
-        System.out.println("---> Chess Game Started with parameters: " + params.toString() + "\n".toUpperCase());
+        System.out.println("\n---> Chess Game Started with parameters: " + params.toString());
 
         String color = chessParams.getColor();
         String type = chessParams.getType();
@@ -55,13 +59,10 @@ public class Game {
             }
 
             board.printBoard(); // Mostrar el tablero
-
             try {
                 Thread.sleep(speed);
             } catch (InterruptedException e) {
-                System.out.println("---> MESSAGE: Error to Start the Game. " + e.getMessage());
-                Thread.currentThread().interrupt();
-                break;
+                throw new ChessGameException("---> MESSAGE: Error to Start the Game. " + e.getMessage());
             }
         }
     }

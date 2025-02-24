@@ -1,5 +1,6 @@
 package pieces;
 
+import exceptions.ChessGameException;
 import pieces.enums.Color;
 import pieces.types.*;
 
@@ -20,7 +21,7 @@ public class PieceFactory {
             case "king":
                 return new King(color);
             default:
-                throw new IllegalArgumentException("---> Piece not recognized");
+                throw new ChessGameException("---> Piece not recognized");
         }
     }
 }

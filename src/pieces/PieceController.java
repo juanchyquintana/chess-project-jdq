@@ -1,6 +1,7 @@
 package pieces;
 
 import board.Board;
+import exceptions.ChessGameException;
 import pieces.enums.Color;
 import pieces.types.*;
 
@@ -81,7 +82,7 @@ public class PieceController {
                 insertPawns(color);
                 break;
             default:
-                System.out.println("Opción No Válida.");
+                throw new ChessGameException("Option not valid.");
         }
 
     }
