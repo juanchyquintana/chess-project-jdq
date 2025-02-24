@@ -25,26 +25,17 @@ public class ChessUtils {
     }
 
     public static String printTypeOfAlgorithm(String algorithm) {
-        switch (algorithm) {
-            case "s":
-                return "Selection Sort";
-            case "b":
-                return "Bubble Sort";
-            case "i":
-                return "Insertion Sort";
-            case "m":
-                return "Merge Sort";
-            case "q":
-                return "Quick Sort";
-            case "h":
-                return "Heap Sort";
-            case "c":
-                return "Counting Sort";
-            case "r":
-                return "Radix Sort";
-            default:
-                return "Algorithm not found";
-        }
+        return switch (algorithm) {
+            case "s" -> "Selection Sort";
+            case "b" -> "Bubble Sort";
+            case "i" -> "Insertion Sort";
+            case "m" -> "Merge Sort";
+            case "q" -> "Quick Sort";
+            case "h" -> "Heap Sort";
+            case "c" -> "Counting Sort";
+            case "r" -> "Radix Sort";
+            default -> "Algorithm not found";
+        };
     }
 
     public static List<String> getPiecesList(String type, int roundValue) {
@@ -63,22 +54,15 @@ public class ChessUtils {
     }
 
     public static String convertToPieceChar(String pieceName) {
-        switch (pieceName.toLowerCase()) {
-            case "pawn":
-                return "p";
-            case "rook":
-                return "r";
-            case "knight":
-                return "h";  // Usamos "h" para caballo
-            case "bishop":
-                return "b";
-            case "queen":
-                return "q";
-            case "king":
-                return "k";
-            default:
-                throw new IllegalArgumentException("Unknown piece type: " + pieceName);
-        }
+        return switch (pieceName.toLowerCase()) {
+            case "pawn" -> "p";
+            case "rook" -> "r";
+            case "knight" -> "h";  // Usamos "h" para caballo
+            case "bishop" -> "b";
+            case "queen" -> "q";
+            case "king" -> "k";
+            default -> throw new ChessGameException("Unknown piece type: " + pieceName);
+        };
     }
 
     public static void executeSorting(String algorithm, List<String> values, int speed) {

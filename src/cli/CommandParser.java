@@ -27,33 +27,29 @@ public class CommandParser {
     public void createGameWithParams(String[] args) {
         Map<String, String> params = processParam(args);
 
-        try {
-            if (!params.containsKey("a") || !params.containsKey("t") || !params.containsKey("c") || !params.containsKey("r") || !params.containsKey("s")) {
-                throw new ChessGameException("---> MESSAGE: Error, no parameters were provided");
-            }
+        ChessParamsValidator.validateRequiredParams(params, "a", "t", "c", "r", "s");
 
-            String algorithm = params.get("a").toLowerCase();
-            String listType = params.get("t").toLowerCase();
-            String colorType = params.get("c").toLowerCase();
-            int roundValue = Integer.parseInt(params.get("r"));
-            int speed = Integer.parseInt(params.get("s"));
+        String algorithm = params.get("a").toLowerCase();
+        String listType = params.get("t").toLowerCase();
+        String colorType = params.get("c").toLowerCase();
 
-            if (!ChessParamsValidator.validatePieceNumber(roundValue)) {
-                throw new ChessGameException("---> MESSAGE: Invalid number of pieces, must be between 1 and 16.");
-            }
+        int roundValue = ChessParamsValidator.validateParseInt(params.get("r"), "roundValue", 1, 16);
+        int speed = ChessParamsValidator.validateParseInt(params.get("s"), "speed",100, 1000);
 
-            if (!ChessParamsValidator.validateCharacter(colorType)) {
-                throw new ChessGameException("---> MESSAGE: Invalid piece character.");
-            }
 
-            ChessParams chessParams = new ChessParams(colorType, algorithm, listType, roundValue, speed);
-            printGameArgs(params, chessParams);
-
-            // Extraemos la lógica de los algoritmos y otros parámetros.
-            chess.startGame(params, chessParams); // Iniciar el juego con los parámetros procesados
-        } catch (IllegalArgumentException e) {
-            throw new ChessGameException("---> MESSAGE: Error parsing parameters. Check your input", e);
+        if (!ChessParamsValidator.validatePieceNumber(roundValue)) {
+            throw new ChessGameException("---> MESSAGE: Invalid number of pieces. Allowed values: 1, 2, 4, 6, 8, 10, 16.");
         }
+
+        if (!ChessParamsValidator.validateCharacter(colorType)) {
+            throw new ChessGameException("---> MESSAGE: Invalid piece character.");
+        }
+
+        ChessParams chessParams = new ChessParams(colorType, algorithm, listType, roundValue, speed);
+        printGameArgs(params, chessParams);
+
+        // Extraemos la lógica de los algoritmos y otros parámetros.
+        chess.startGame(params, chessParams); // Iniciar el juego con los parámetros procesados
     }
 
     /**
@@ -89,9 +85,7 @@ public class CommandParser {
      */
     private static void applySorting(String algorithm, List<String> values, int speed) {
         switch (algorithm) {
-            case "b":
-            case "s":
-            case "i":
+            case "b", "s", "i", "m", "q", "h", "c", "r":
                 ChessUtils.executeSorting(algorithm, values, speed);
                 break;
             default:
