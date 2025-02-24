@@ -95,13 +95,10 @@ public class CommandParser {
                 ChessUtils.executeSorting(algorithm, values, speed);
                 break;
             default:
-                System.out.println("---> MESSAGE: Invalid algorithm option.");
-                break;
+                throw new ChessGameException("---> MESSAGE: Invalid algorithm option.");
         }
-
-        System.out.println("\nOrdenamiento: " + values);
+        System.out.println("\nOrdenamiento: " + values + "\n");
     }
-
 
     /**
      * Imprime los parámetros del juego en la consola.
@@ -116,13 +113,9 @@ public class CommandParser {
         System.out.println("*** These are your parsed parameters for the Chess Game ***");
         params.forEach((key, value) -> System.out.println("\t" + key + "=" + value));
 
-        System.out.println("Color: [" + ChessUtils.printColor(chessParams.getColor()) + "]");
-        System.out.println("Tipo: [" + ChessUtils.printTypeText(chessParams.getType()) + "]");
-
-        System.out.println("Algoritmo: [" + ChessUtils.printTypeOfAlgorithm(chessParams.getAlgorithm()) + "]");
-        System.out.println("Speed: " + chessParams.getSpeed() + "ms");
-
+        System.out.println(chessParams.toString());
         System.out.println("Valores: ");
+
         List<String> values = ChessUtils.getPiecesList(chessParams.getType(), chessParams.getRoundValue());
         applySorting(chessParams.getAlgorithm(), values, chessParams.getSpeed());
 

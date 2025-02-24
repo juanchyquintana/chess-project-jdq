@@ -38,7 +38,7 @@ public class Game {
 
         PieceController pieceController = new PieceController(board);
 
-        System.out.println("---> Chess Game Started with parameters: " + params.toString() + "\n".toUpperCase());
+        System.out.println("\n---> Chess Game Started with parameters: " + params.toString());
 
         String color = chessParams.getColor();
         String type = chessParams.getType();
@@ -59,7 +59,6 @@ public class Game {
             }
 
             board.printBoard(); // Mostrar el tablero
-
             try {
                 Thread.sleep(speed);
             } catch (InterruptedException e) {

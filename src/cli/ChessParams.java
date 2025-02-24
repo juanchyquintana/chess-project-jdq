@@ -1,5 +1,7 @@
 package cli;
 
+import utils.ChessUtils;
+
 import java.util.Objects;
 
 /**
@@ -79,13 +81,10 @@ public class ChessParams {
 
     @Override
     public String toString() {
-        return "ChessParams{" +
-                "color=" + color +
-                ", algorithm=" + algorithm +
-                ", type=" + type +
-                ", roundValue=" + roundValue +
-                ", speed=" + speed +
-                '}';
+        return  "\nColor: [" + ChessUtils.printColor(color) + "]\n" +
+                "Type: [" + ChessUtils.printTypeText(type) + "]\n" +
+                "Algorithm: [" + ChessUtils.printTypeOfAlgorithm(algorithm) + "]\n" +
+                "Speed: " + speed + "ms\n";
     }
 
     @Override
