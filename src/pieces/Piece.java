@@ -1,5 +1,6 @@
 package pieces;
 
+import exceptions.ChessGameException;
 import pieces.enums.Color;
 
 public abstract class Piece implements Comparable<Piece>{
@@ -37,7 +38,7 @@ public abstract class Piece implements Comparable<Piece>{
         } else if (this.value instanceof String && other.value instanceof String) {
             return ((String) this.value).compareTo((String) other.value);
         } else {
-            throw new IllegalArgumentException("Cannot compare different types of values");
+            throw new ChessGameException("Cannot compare different types of values");
         }
     }
 }

@@ -4,7 +4,10 @@ import exceptions.ChessGameException;
 import moves.*;
 import pieces.enums.Color;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class ChessUtils {
     public static String printColor(String color) {
@@ -23,15 +26,24 @@ public class ChessUtils {
 
     public static String printTypeOfAlgorithm(String algorithm) {
         switch (algorithm) {
-            case "s": return "Selection Sort";
-            case "b": return "Bubble Sort";
-            case "i": return "Insertion Sort";
-            case "m": return "Merge Sort";
-            case "q": return "Quick Sort";
-            case "h": return "Heap Sort";
-            case "c": return "Counting Sort";
-            case "r": return "Radix Sort";
-            default: return "Algorithm not valid";
+            case "s":
+                return "Selection Sort";
+            case "b":
+                return "Bubble Sort";
+            case "i":
+                return "Insertion Sort";
+            case "m":
+                return "Merge Sort";
+            case "q":
+                return "Quick Sort";
+            case "h":
+                return "Heap Sort";
+            case "c":
+                return "Counting Sort";
+            case "r":
+                return "Radix Sort";
+            default:
+                return "Algorithm not found";
         }
     }
 
@@ -97,8 +109,7 @@ public class ChessUtils {
                 algorithmMove = new RadixSort();
                 break;
             default:
-                System.out.println("---> MESSAGE: Algorithm not valid.");
-                return;
+                throw new ChessGameException("---> MESSAGE: Algorithm not valid.");
         }
         algorithmMove.sort(values, speed);
     }

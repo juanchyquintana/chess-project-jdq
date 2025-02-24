@@ -28,13 +28,13 @@ public class Board {
      */
     public void createBoard() {
         try {
-            for(int i = 0; i < HEIGHT; i++) {
-                for(int j = 0; j < WIDTH; j++) {
+            for (int i = 0; i < HEIGHT; i++) {
+                for (int j = 0; j < WIDTH; j++) {
                     board[i][j] = new Square(i, j, null);
                 }
             }
         } catch (Exception e) {
-            throw new ChessGameException("---> MESSAGE: Error creating board",e);
+            throw new ChessGameException("---> MESSAGE: Error creating board", e);
         }
     }
 
@@ -44,8 +44,8 @@ public class Board {
      */
     public void printBoard() {
         try {
-            for(int i = 0; i < HEIGHT; i++) {
-                for(int j = 0; j < WIDTH; j++) {
+            for (int i = 0; i < HEIGHT; i++) {
+                for (int j = 0; j < WIDTH; j++) {
                     Piece piece = board[i][j].getPiece();
                     System.out.print(piece != null ? piece.getSymbol() + " " : " *");
                 }
@@ -58,14 +58,15 @@ public class Board {
 
     /**
      * Recupera un cuadrado específico del tablero basándose en los índices de fila y columna.
-     * @param row El índice de fila del cuadrado.
+     *
+     * @param row    El índice de fila del cuadrado.
      * @param column El índice de columna del cuadrado.
      * @return El objeto cuadrado correspondiente.
-     *
+     * <p>
      * Retrieves a specific square from the board based on row and column indices.
-     *      * @param row The row index of the square.
-     *      * @param column The column index of the square.
-     *      * @return The corresponding Square object.
+     * * @param row The row index of the square.
+     * * @param column The column index of the square.
+     * * @return The corresponding Square object.
      */
     public Square getSquares(int row, int column) {
         return board[row][column];
