@@ -15,8 +15,8 @@ public abstract class Piece implements Comparable<Piece>{
 
     public abstract String getSymbol();
 
-    public Color getColor() {
-        return color;
+    public Color getColor(String color) {
+        return color.equalsIgnoreCase("W") ? Color.WHITE : Color.BLACK;
     }
 
     public void setColor(Color color) {

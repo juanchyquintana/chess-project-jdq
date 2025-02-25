@@ -3,7 +3,7 @@ package game;
 import board.Board;
 import cli.ChessParams;
 import exceptions.ChessGameException;
-import pieces.PieceController;
+import pieces.piece.PieceController;
 import utils.ChessUtils;
 
 import java.util.List;

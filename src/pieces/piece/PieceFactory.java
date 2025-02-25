@@ -1,12 +1,13 @@
-package pieces;
+package pieces.piece;
 
 import exceptions.ChessGameException;
+import pieces.IPiece;
 import pieces.enums.Color;
 import pieces.types.*;
 
 
 public class PieceFactory {
-    public static Piece createPiece(String pieceType, Color color) {
+    public static IPiece createPiece(String pieceType, Color color) {
         return switch (pieceType.toLowerCase()) {
             case "pawn" -> new Pawn(color);
             case "rook" -> new Rook(color);
