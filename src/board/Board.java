@@ -15,7 +15,6 @@ public class Board {
     private final Square[][] board;
 
     /**
-     * Constructor que inicializa el tablero creando casillas vacías.
      * Constructor that initializes the board by creating empty squares.
      */
     public Board() {
@@ -23,7 +22,6 @@ public class Board {
     }
 
     /**
-     * Inicializa el tablero creando casillas vacías.
      * Initializes the board by creating empty squares.
      */
     public void createBoard() {
@@ -39,7 +37,6 @@ public class Board {
     }
 
     /**
-     * Imprime el estado actual del tablero.
      * Prints the current state of the board.
      */
     public void printBoard() {
@@ -57,16 +54,10 @@ public class Board {
     }
 
     /**
-     * Recupera un cuadrado específico del tablero basándose en los índices de fila y columna.
-     *
-     * @param row    El índice de fila del cuadrado.
-     * @param column El índice de columna del cuadrado.
-     * @return El objeto cuadrado correspondiente.
-     * <p>
      * Retrieves a specific square from the board based on row and column indices.
-     * * @param row The row index of the square.
-     * * @param column The column index of the square.
-     * * @return The corresponding Square object.
+     * @param row The row index of the square.
+     * @param column The column index of the square.
+     * @return The corresponding Square object.
      */
     public Square getSquares(int row, int column) {
         return board[row][column];
