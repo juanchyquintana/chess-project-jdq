@@ -1,7 +1,6 @@
 package pieces.enums;
 
 /**
- * Representa los diferentes tipos de piezas de ajedrez.
  * Represents the different types of chess pieces.
  */
 public enum PieceType {
@@ -15,10 +14,8 @@ public enum PieceType {
     private final String pieceName;
 
     /**
-     * Constructor para inicializar el tipo de pieza.
-     * @param pieceName El nombre de la pieza de ajedrez.
-     *      Constructor to initialize the piece type.
-     *      * @param pieceName The name of the chess piece.
+     * Constructor to initialize the piece type.
+     * @param pieceName The name of the chess piece.
      */
     PieceType(String pieceName) {
         this.pieceName = pieceName;

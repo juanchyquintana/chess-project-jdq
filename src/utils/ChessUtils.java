@@ -66,35 +66,17 @@ public class ChessUtils {
     }
 
     public static void executeSorting(String algorithm, List<String> values, int speed) {
-        AlgorithmMove algorithmMove;
-        switch (algorithm) {
-            case "b":
-                algorithmMove = new BubbleSort();
-                break;
-            case "s":
-                algorithmMove = new SelectionSort();
-                break;
-            case "i":
-                algorithmMove = new InsertionSort();
-                break;
-            case "m":
-                algorithmMove = new MergeSort();
-                break;
-            case "q":
-                algorithmMove = new QuickSort();
-                break;
-            case "h":
-                algorithmMove = new HeapSort();
-                break;
-            case "c":
-                algorithmMove = new CountingSort();
-                break;
-            case "r":
-                algorithmMove = new RadixSort();
-                break;
-            default:
-                throw new ChessGameException("---> MESSAGE: Algorithm not valid.");
-        }
+        AlgorithmMove algorithmMove = switch (algorithm) {
+            case "b" -> new BubbleSort();
+            case "s" -> new SelectionSort();
+            case "i" -> new InsertionSort();
+            case "m" -> new MergeSort();
+            case "q" -> new QuickSort();
+            case "h" -> new HeapSort();
+            case "c" -> new CountingSort();
+            case "r" -> new RadixSort();
+            default -> throw new ChessGameException("---> MESSAGE: Algorithm not valid.");
+        };
         algorithmMove.sort(values, speed);
     }
 
