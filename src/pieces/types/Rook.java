@@ -1,10 +1,13 @@
 package pieces.types;
 
+import board.Board;
+import pieces.IPiece;
 import pieces.Piece;
 import pieces.enums.Color;
 import pieces.enums.PieceType;
+import pieces.piece.PieceController;
 
-public class Rook extends Piece {
+public class Rook extends Piece implements IPiece {
     private final PieceType pieceType;
 
     public Rook(Color color) {
@@ -14,6 +17,25 @@ public class Rook extends Piece {
 
     public PieceType getPieceType() {
         return pieceType;
+    }
+
+    @Override
+    public void insertPiece(Board board, String color) {
+        System.out.println("---> MESSAGE: The ROOK is placed");
+
+        Color pieceColor = getColor(color);
+        int row = PieceController.getRow(color);
+        int emptyColumn = PieceController.findEmptyColumn(board, row);
+
+        board.getSquares(row, emptyColumn).setPiece(new Rook(pieceColor));
+    }
+
+    @Override
+    public void insertAllPieces(Board board, String color) {
+        System.out.println("---> MESSAGE: The ROOKS are placed");
+
+        board.getSquares(PieceController.getRow(color), 0).setPiece(new Rook(getColor(color)));
+        board.getSquares(PieceController.getRow(color), 7).setPiece(new Rook(getColor(color)));
     }
 
     @Override
