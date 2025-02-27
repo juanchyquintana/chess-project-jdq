@@ -36,6 +36,18 @@ public class ChessParamsValidator {
         }
     }
 
+    public static void validateParseInt(String value, int min, int max, String params) {
+        if (!isNumericValue(value)) {
+            throw new ChessGameException("---> MESSAGE: Invalid " + params + " value. Must be a number.");
+        }
+
+        int numericValue = Integer.parseInt(value);
+
+        if (numericValue < min || numericValue > max) {
+            throw new ChessGameException("---> MESSAGE: Invalid params value. Must be between " + min + " and " + max + ".");
+        }
+    }
+
     public static boolean validatePieceNumber(int roundNumber) {
         List<Integer> validNumbers = Arrays.asList(1, 2, 4, 6, 8, 10, 16);
         return validNumbers.contains(roundNumber);
@@ -51,18 +63,6 @@ public class ChessParamsValidator {
         return validCharsOfType.contains(listType);
     }
 
-    public static void validateParseInt(String value, int min, int max, String params) {
-        if (!isNumericValue(value)) {
-            throw new ChessGameException("---> MESSAGE: Invalid " + params + " value. Must be a number.");
-        }
-
-        int numericValue = Integer.parseInt(value);
-
-        if (numericValue < min || numericValue > max) {
-            throw new ChessGameException("---> MESSAGE: Invalid params value. Must be between " + min + " and " + max + ".");
-        }
-    }
-
     public static boolean isNumericValue(String text) {
         if (text == null || text.isEmpty()) {
             return false;
@@ -75,5 +75,4 @@ public class ChessParamsValidator {
             return false;
         }
     }
-
 }
