@@ -28,20 +28,26 @@ public class CommandParser {
         String listType = params.get("t").toLowerCase();
         String colorType = params.get("c").toLowerCase();
 
-        int roundValue = ChessParamsValidator.validateParseInt(params.get("r"), "roundValue", 1, 16);
-        int speed = ChessParamsValidator.validateParseInt(params.get("s"), "speed",100, 1000);
+        ChessParamsValidator.validateParseInt(params.get("r"), 1, 16, "Round Value ('r')");
+        ChessParamsValidator.validateParseInt(params.get("s"),100, 1000, "Speed ('s')");
 
+        int roundValue = Integer.parseInt(params.get("r"));
+        int speed = Integer.parseInt(params.get("s"));
+
+        ChessParams chessParams = new ChessParams(colorType, algorithm, listType, roundValue, speed);
+        printGameArgs(params, chessParams);
+
+        if(!ChessParamsValidator.validateType(listType)) {
+            throw new ChessGameException("---> MESSAGE: Invalid List Type. Allowed values: 'c - C' or 'n - N'.");
+        }
 
         if (!ChessParamsValidator.validatePieceNumber(roundValue)) {
             throw new ChessGameException("---> MESSAGE: Invalid number of pieces. Allowed values: 1, 2, 4, 6, 8, 10, 16.");
         }
 
-        if (!ChessParamsValidator.validateCharacter(colorType)) {
-            throw new ChessGameException("---> MESSAGE: Invalid piece character.");
+        if (!ChessParamsValidator.validateCharacterOfColor(colorType)) {
+            throw new ChessGameException("---> MESSAGE: Invalid color. Allowed values: 'b - B' or 'w - W'");
         }
-
-        ChessParams chessParams = new ChessParams(colorType, algorithm, listType, roundValue, speed);
-        printGameArgs(params, chessParams);
 
         chess.startGame(params, chessParams);
     }

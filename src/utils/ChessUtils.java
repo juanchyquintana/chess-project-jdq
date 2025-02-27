@@ -20,8 +20,15 @@ public class ChessUtils {
     public static String printTypeText(String type) {
         String isNumeric = "Numeric".toUpperCase();
         String isCharacter = "Character".toUpperCase();
+        String invalidType = "Type not valid".toUpperCase();
 
-        return type.equalsIgnoreCase("N") ? isNumeric : isCharacter;
+        if(type.equalsIgnoreCase("N")) {
+            return isNumeric;
+        } else if (type.equalsIgnoreCase("C")) {
+            return isCharacter;
+        } else {
+            return invalidType;
+        }
     }
 
     public static String printTypeOfAlgorithm(String algorithm) {
