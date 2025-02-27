@@ -4,10 +4,7 @@ import exceptions.ChessGameException;
 import moves.*;
 import pieces.enums.Color;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ChessUtils {
     public static String printColor(String color) {
@@ -20,22 +17,27 @@ public class ChessUtils {
     public static String printTypeText(String type) {
         String isNumeric = "Numeric".toUpperCase();
         String isCharacter = "Character".toUpperCase();
+        String invalidType = "Type not valid".toUpperCase();
 
-        return type.equalsIgnoreCase("N") ? isNumeric : isCharacter;
+        if (type.equalsIgnoreCase("N")) {
+            return isNumeric;
+        } else if (type.equalsIgnoreCase("C")) {
+            return isCharacter;
+        } else {
+            return invalidType;
+        }
     }
 
     public static String printTypeOfAlgorithm(String algorithm) {
-        return switch (algorithm) {
-            case "s" -> "Selection Sort";
-            case "b" -> "Bubble Sort";
-            case "i" -> "Insertion Sort";
-            case "m" -> "Merge Sort";
-            case "q" -> "Quick Sort";
-            case "h" -> "Heap Sort";
-            case "c" -> "Counting Sort";
-            case "r" -> "Radix Sort";
-            default -> "Algorithm not found";
-        };
+        Map<String, String> nameOfTypeAlgorithm = Map.of(
+                "s", "Selection Sort",
+                "b", "Bubble Sort",
+                "i", "Insertion Sort",
+                "q", "Quick Sort"
+        );
+
+        // usca directamente el valor sin múltiples comparaciones.
+        return nameOfTypeAlgorithm.getOrDefault(algorithm, "Algorithm not found");
     }
 
     public static List<String> getPiecesList(String type, int roundValue) {
@@ -54,29 +56,38 @@ public class ChessUtils {
     }
 
     public static String convertToPieceChar(String pieceName) {
-        return switch (pieceName.toLowerCase()) {
-            case "pawn" -> "p";
-            case "rook" -> "r";
-            case "knight" -> "h";  // Usamos "h" para caballo
-            case "bishop" -> "b";
-            case "queen" -> "q";
-            case "king" -> "k";
-            default -> throw new ChessGameException("Unknown piece type: " + pieceName);
-        };
+        String typePiece = pieceName.toLowerCase();
+
+        if (typePiece.equalsIgnoreCase("pawn")) {
+            return "p";
+        } else if (typePiece.equalsIgnoreCase("rook")) {
+            return "r";
+        } else if (typePiece.equalsIgnoreCase("knight")) {
+            return "h"; // Usamos "h" para caballo
+        } else if (typePiece.equalsIgnoreCase("bishop")) {
+            return "b";
+        } else if (typePiece.equalsIgnoreCase("queen")) {
+            return "q";
+        } else if (typePiece.equalsIgnoreCase("king")) {
+            return "k";
+        } else {
+            throw new ChessGameException("---> MESSAGE: Error, unknown piece type: " + pieceName);
+        }
     }
 
     public static void executeSorting(String algorithm, List<String> values, int speed) {
-        AlgorithmMove algorithmMove = switch (algorithm) {
-            case "b" -> new BubbleSort();
-            case "s" -> new SelectionSort();
-            case "i" -> new InsertionSort();
-            case "m" -> new MergeSort();
-            case "q" -> new QuickSort();
-            case "h" -> new HeapSort();
-            case "c" -> new CountingSort();
-            case "r" -> new RadixSort();
-            default -> throw new ChessGameException("---> MESSAGE: Algorithm not valid.");
-        };
+        Map<String, AlgorithmMove> algorithmMoveMap = Map.of(
+                "b", new BubbleSort(),
+                "s", new SelectionSort(),
+                "i", new InsertionSort(),
+                "q", new QuickSort()
+        );
+
+        AlgorithmMove algorithmMove = algorithmMoveMap.get(algorithm);
+        if (algorithmMove == null) {
+            throw new ChessGameException("---> MESSAGE: Algorithm not valid.");
+        }
+
         algorithmMove.sort(values, speed);
     }
 

@@ -2,16 +2,49 @@ package cli;
 
 import exceptions.ChessGameException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class ChessParamsValidator {
     public static void validateRequiredParams(Map<String, String> params, String... keys) {
-        for(String key : keys) {
-            if(!params.containsKey(key)) {
-                throw new ChessGameException("---> MESSAGE: Error, no parameters were provided");
+        List<String> missingParameters = new ArrayList<>();
+
+        for (String key : keys) {
+            String nameOfKey = key;
+
+            if (key.equalsIgnoreCase("a")) {
+                nameOfKey = "Algorithm ('a')";
+            } else if (key.equalsIgnoreCase("t")) {
+                nameOfKey = "Type ('t')";
+            } else if (key.equalsIgnoreCase("c")) {
+                nameOfKey = "Color ('c')";
+            } else if (key.equalsIgnoreCase("r")) {
+                nameOfKey = "Round ('r')";
+            } else if (key.equalsIgnoreCase("s")) {
+                nameOfKey = "Speed ('s')";
             }
+
+            if (!params.containsKey(key)) {
+                missingParameters.add(nameOfKey);
+            }
+        }
+
+        if (!missingParameters.isEmpty()) {
+            throw new ChessGameException("---> MESSAGE: Error, no parameters were provided. Your parameters empty is/are: " + String.join(", ", missingParameters));
+        }
+    }
+
+    public static void validateParseInt(String value, int min, int max, String params) {
+        if (!isNumericValue(value)) {
+            throw new ChessGameException("---> MESSAGE: Invalid " + params + " value. Must be a number.");
+        }
+
+        int numericValue = Integer.parseInt(value);
+
+        if (numericValue < min || numericValue > max) {
+            throw new ChessGameException("---> MESSAGE: Invalid params value. Must be between " + min + " and " + max + ".");
         }
     }
 
@@ -20,28 +53,18 @@ public class ChessParamsValidator {
         return validNumbers.contains(roundNumber);
     }
 
-    public static boolean validateCharacter(String pieceString) {
-        List<String> validChars = Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h");
+    public static boolean validateCharacterOfColor(String pieceString) {
+        List<String> validChars = Arrays.asList("b", "B", "w", "W");
         return validChars.contains(pieceString);
     }
 
-
-    public static int validateParseInt(String value, String params, int min, int max) {
-        if(!isNumericValue(value)) {
-            throw new ChessGameException("---> MESSAGE: Invalid " + params + " value. Must be a number.");
-        }
-
-        int parsedNumber = Integer.parseInt(value);
-
-        if(parsedNumber < min || parsedNumber > max) {
-            throw new ChessGameException("---> MESSAGE: Invalid " + params + " value. Must be between " + min + " and " + max + ".");
-        }
-
-        return parsedNumber;
+    public static boolean validateType(String listType) {
+        List<String> validCharsOfType = Arrays.asList("c", "n", "C", "N");
+        return validCharsOfType.contains(listType);
     }
 
     public static boolean isNumericValue(String text) {
-        if(text == null || text.isEmpty()) {
+        if (text == null || text.isEmpty()) {
             return false;
         }
 
