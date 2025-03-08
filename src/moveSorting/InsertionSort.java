@@ -6,6 +6,11 @@ import parameters.ChessParams;
 
 import java.util.List;
 
+/**
+ * Implements the Insertion Sort algorithm for sorting chess piece values.
+ * This algorithm builds a sorted portion of the list by inserting each element
+ * into its correct position relative to the already sorted section.
+ */
 public class InsertionSort implements IAlgorithmMove {
     @Override
     public void sort(List<Integer> values, Board board, ChessParams chessParams, AlgorithmMoveController algorithmMoveController) {

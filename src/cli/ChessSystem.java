@@ -19,15 +19,11 @@ public class ChessSystem {
 
     /**
      * Retrieves the single instance of ChessSystem.
-     * @return The unique instance of ChessSystem.
      */
     private ChessSystem() {
     }
 
-    /**
-     * Retrieves the single instance of ChessSystem.
-     * @return The unique instance of ChessSystem.
-     */
+    // Singleton pattern for ChessSystem instance
     public static ChessSystem getInstance() {
         return INSTANCE;
     }
@@ -49,7 +45,7 @@ public class ChessSystem {
         ChessParams chessParams = new ChessParams(algorithm, listType, color, numberOfPieces, speed);
         chessParamsValidator.validateParameters(chessParams);
 
-        printInformationGame(params, chessParams);
+        printGameSettings(params, chessParams);
         chess.startGame(chessParams);
     }
 
@@ -58,7 +54,7 @@ public class ChessSystem {
      * @param params A map of key-value parameter pairs.
      * @param chessParams An instance of ChessParams containing parsed values.
      */
-    private void printInformationGame(Map<String, String> params, ChessParams chessParams) {
+    private void printGameSettings(Map<String, String> params, ChessParams chessParams) {
         System.out.println("*** These are your parsed parameters for the Chess Game ***");
         params.forEach((key, value) -> System.out.print(" " + key + "=" + value));
 
