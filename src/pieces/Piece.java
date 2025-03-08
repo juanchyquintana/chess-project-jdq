@@ -1,34 +1,50 @@
 package pieces;
 
+import board.Board;
 import exceptions.ChessGameException;
 import pieces.enums.Color;
 
-public abstract class Piece implements Comparable<Piece>{
+/**
+ * The Piece class is an abstract representation of a chess piece.
+ * Each piece has a color, a value, and specific behavior for insertion on the board.
+ * This class also implements Comparable<Piece> to allow sorting based on values.
+ */
+public abstract class Piece implements Comparable<Piece> {
     protected Color color;
-    protected Object value;
+    protected Object value; // Can be an Integer or String depending on game mode
 
+    /**
+     * Constructs a new chess piece with the specified color.
+     * @param color The color of the piece (WHITE or BLACK).
+     */
     public Piece(Color color) {
         this.color = color;
     }
 
-    public abstract boolean isValidMove(int startRow, int startColumn, int endRow, int endColumn);
-
+    /**
+     * Returns the symbol representing the piece (e.g., "K" for King, "Q" for Queen).
+     * @return A string representing the piece's symbol.
+     */
     public abstract String getSymbol();
 
+    /**
+     * Inserts the piece into the given board at a specified position.
+     * @param board The chessboard where the piece will be placed.
+     * @param color The color of the piece.
+     */
+    public abstract void insertPiece(Board board, String color);
+
+    /**
+     * Determines the piece color based on a string input.
+     * @param color A string representing the color ("W" for White, "B" for Black).
+     * @return The corresponding @code Color enum.
+     */
     public Color getColor(String color) {
         return color.equalsIgnoreCase("W") ? Color.WHITE : Color.BLACK;
     }
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public Object getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
     }
 
     @Override

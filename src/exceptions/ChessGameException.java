@@ -9,6 +9,10 @@ public class ChessGameException extends RuntimeException {
         super(message);
     }
 
+    public ChessGameException(Throwable cause) {
+        super(cause);
+    }
+
     public ChessGameException(String message, Throwable cause) {
         super(message, cause);
     }

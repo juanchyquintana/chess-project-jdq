@@ -1,5 +1,6 @@
 package board;
 
+
 import pieces.Piece;
 
 /**
@@ -15,20 +16,11 @@ public class Square {
      *  Constructor to create a square on the board.
      *  @param row The row index of the square.
      *  @param column The column index of the square.
-     *  @param piece The chess piece placed on the square, or null if empty.
      */
     public Square(int row, int column, Piece piece) {
         this.column = column;
         this.row = row;
         this.piece = piece;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
     }
 
     public Piece getPiece() {
