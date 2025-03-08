@@ -7,6 +7,12 @@ import parameters.ChessParams;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Manages the execution of sorting algorithms for piece movement.
+ * - Uses a map to select the correct sorting strategy.
+ * - Validates the chosen algorithm before execution.
+ * - Calls the sorting algorithm and updates the board accordingly.
+ */
 public class AlgorithmMoveController {
     public void executeSorting(ChessParams chessParams, Board board, List<Integer> values) {
         Map<String, IAlgorithmMove> algorithmMoveMap = Map.of(

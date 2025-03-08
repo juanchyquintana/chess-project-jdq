@@ -6,6 +6,11 @@ import parameters.ChessParams;
 
 import java.util.List;
 
+/**
+ * Implements the Bubble Sort algorithm for sorting chess piece values.
+ * This algorithm iterates through the list, swapping adjacent elements
+ * if they are in the wrong order, ensuring the largest elements "bubble up" to the top.
+ */
 public class BubbleSort implements IAlgorithmMove {
     @Override
     public void sort(List<Integer> values, Board board, ChessParams chessParams, AlgorithmMoveController algorithmMoveController) {

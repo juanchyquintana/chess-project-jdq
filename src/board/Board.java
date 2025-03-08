@@ -17,16 +17,7 @@ import java.util.Map;
 public class Board {
     private static final int HEIGHT = 8;
     private static final int WIDTH = 8;
-    private static final int[][] FINAL_POSITIONS_BLACK = {
-            {0, 4}, {0, 3}, {0, 2}, {0, 5}, {0, 1}, {0, 6}, {0, 0}, {0, 7},
-            {1, 0}, {1, 1}, {1, 2}, {1, 3}, {1, 4}, {1, 5}, {1, 6}, {1, 7}
-    };
-    private static final int[][] FINAL_POSITIONS_WHITE = {
-            {7, 4}, {7, 3}, {7, 2}, {7, 5}, {7, 1}, {7, 6}, {7, 0}, {7, 7},
-            {6, 0}, {6, 1}, {6, 2}, {6, 3}, {6, 4}, {6, 5}, {6, 6}, {6, 7}
-    };
     private final Square[][] board;
-
 
     /**
      * Constructor that initializes the board by creating empty squares.
@@ -77,9 +68,6 @@ public class Board {
      * @param step The number of steps to process.
      */
     public void updateBoard(List<Integer> values, ChessParams params, int step) {
-        int[][] finalPositions = params.getColor().equalsIgnoreCase("w") ? FINAL_POSITIONS_WHITE : FINAL_POSITIONS_BLACK;
-        Map<Integer, int[]> currentPositions = new HashMap<>();
-
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[row].length; col++) {
                 board[row][col] = new Square(row, col, null);
@@ -94,10 +82,8 @@ public class Board {
             String pieceName = getPieceName(value);
             Piece piece = PieceController.createPiece(pieceName, params.getColor());
 
-            // Si es un peón, usar el insertPiece con columna
             if (piece instanceof Pawn pawn) {
-                int column = value - 8; // Ajustar índice de columna para los peones
-                pawn.insertPiece(this, params.getColor(), column);
+                pawn.insertPiece(this, params.getColor(), value - 8);
             } else {
                 piece.insertPiece(this, params.getColor());
             }
@@ -107,7 +93,6 @@ public class Board {
 
     /**
      * Retrieves the name of a chess piece based on its numeric value (1-16).
-     *
      * @param value The numeric value of the piece.
      * @return The name of the corresponding chess piece.
      */
