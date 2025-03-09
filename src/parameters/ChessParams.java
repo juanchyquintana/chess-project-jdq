@@ -18,11 +18,11 @@ public class ChessParams {
 
     /**
      * Constructs a new ChessParams object with the specified parameters.
-     * @param algorithm      The sorting algorithm to be used.
-     * @param listType       The type of list representation ("n" for numeric, "c" for character).
-     * @param color          The color of the pieces ("w" for white, "b" for black).
+     * @param algorithm The sorting algorithm to be used.
+     * @param listType The type of list representation ("n" for numeric, "c" for character).
+     * @param color The color of the pieces ("w" for white, "b" for black).
      * @param numberOfPieces The number of pieces in the game.
-     * @param speed          The speed setting (in milliseconds).
+     * @param speed The speed setting (in milliseconds).
      */
     public ChessParams(String algorithm, String listType, String color, int numberOfPieces, int speed) {
         this.algorithm = algorithm;

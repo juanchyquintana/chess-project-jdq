@@ -2,6 +2,9 @@ package moveSorting;
 
 import board.Board;
 import exceptions.ChessGameException;
+import moveSorting.sorts.BubbleSort;
+import moveSorting.sorts.InsertionSort;
+import moveSorting.sorts.SelectionSort;
 import parameters.ChessParams;
 
 import java.util.List;

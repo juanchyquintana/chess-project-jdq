@@ -1,7 +1,9 @@
-package moveSorting;
+package moveSorting.sorts;
 
 import board.Board;
 import game.ChessGameController;
+import moveSorting.AlgorithmMoveController;
+import moveSorting.IAlgorithmMove;
 import parameters.ChessParams;
 
 import java.util.List;
@@ -16,17 +18,15 @@ public class InsertionSort implements IAlgorithmMove {
     public void sort(List<Integer> values, Board board, ChessParams chessParams, AlgorithmMoveController algorithmMoveController) {
         ChessGameController controller = new ChessGameController();
 
-        int n = values.size();
-        for (int i = 0; i < n; i++) {  // Empezamos desde la segunda pieza
+        int quantityValues = values.size();
+        for (int i = 0; i < quantityValues; i++) {
             int key = values.get(i);
             int j = i - 1;
 
-            // Mover los elementos mayores que la key hacia la derecha
             while (j >= 0 && values.get(j) > key) {
                 values.set(j + 1, values.get(j));
                 j--;
             }
-            // Insertar la key en la posición correcta
             values.set(j + 1, key);
 
             List<String> formattedValues = controller.formatInitialValues(values, chessParams.getListType());

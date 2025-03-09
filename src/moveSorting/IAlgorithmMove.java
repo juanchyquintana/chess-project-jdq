@@ -13,7 +13,6 @@ import java.util.List;
 public interface IAlgorithmMove {
     /**
      * Sorts the given list of piece values according to the selected algorithm.
-     *
      * @param values The list of numerical values representing chess pieces.
      * @param board The chessboard where the sorting process is visualized.
      * @param chessParams Configuration parameters for the sorting process (e.g., type of list, speed).
