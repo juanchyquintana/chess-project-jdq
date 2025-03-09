@@ -19,12 +19,11 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void insertPiece(Board board, String color) {
+    public void insertPiece(Board board, String color, int column) {
         Color pieceColor = getColor(color);
         int row = PieceController.setRow(color);
 
-        board.getSquares(row, 2).setPiece(new Bishop(pieceColor));
-        board.getSquares(row, 5).setPiece(new Bishop(pieceColor));
+        board.getSquares(row, column).setPiece(new Bishop(pieceColor));
     }
 
     @Override

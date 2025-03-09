@@ -1,0 +1,101 @@
+@startuml
+' Clases principales
+class Chess {
+    +main(args: String[])
+}
+
+class ChessSystem {
+    +getInstance(): ChessSystem
+    +createGameWithParams(args: String[])
+}
+
+class ChessGame {
+    +startGame(chessParams: ChessParams)
+}
+
+class ChessGameController {
+    +initializeBoard(): Board
+    +generateAndFormatValues(chessParams: ChessParams): List<Integer>
+    +executeSorting(chessParams: ChessParams, board: Board, values: List<Integer>)
+}
+
+class Board {
+    +createBoard()
+    +printBoard()
+    +updateBoard(values: List<Integer>, params: ChessParams, step: int)
+}
+
+class Square {
+    +row: int
+    +column: int
+    +piece: Piece
+}
+
+class AlgorithmMoveController {
+    +executeSorting(chessParams: ChessParams, board: Board, values: List<Integer>)
+}
+
+interface IAlgorithmMove {
+    +sort(values: List<Integer>, board: Board, chessParams: ChessParams, algorithmMoveController: AlgorithmMoveController)
+}
+
+class BubbleSort implements IAlgorithmMove
+class InsertionSort implements IAlgorithmMove
+class SelectionSort implements IAlgorithmMove
+
+class ChessParams {
+    +algorithm: String
+    +listType: String
+    +color: String
+    +numberOfPieces: int
+    +speed: int
+}
+
+class ChessParamsValidator {
+    +validateParameters(parameters: ChessParams)
+    +validateRequiredParams(params: Map<String, String>, keys: String[])
+}
+
+class Piece {
+    +color: Color
+    +getSymbol(): String
+    +insertPiece(board: Board, color: String)
+}
+
+class PieceController {
+    +createPiece(pieceType: String, color: String): Piece
+    +setRow(color: String): int
+}
+
+class Pawn extends Piece
+class Knight extends Piece
+class Bishop extends Piece
+class Rook extends Piece
+class Queen extends Piece
+class King extends Piece
+
+class ChessGameException
+
+' Relaciones
+Chess --> ChessSystem
+ChessSystem --> ChessGame
+ChessGame --> ChessGameController
+ChessGameController --> Board
+ChessGameController --> AlgorithmMoveController
+Board --> Square
+Board --> Piece
+Square --> Piece
+AlgorithmMoveController --> IAlgorithmMove
+IAlgorithmMove <|.. BubbleSort
+IAlgorithmMove <|.. InsertionSort
+IAlgorithmMove <|.. SelectionSort
+ChessParamsValidator --> ChessParams
+PieceController --> Piece
+Piece <|-- Pawn
+Piece <|-- Knight
+Piece <|-- Bishop
+Piece <|-- Rook
+Piece <|-- Queen
+Piece <|-- King
+
+@enduml

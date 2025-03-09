@@ -42,7 +42,7 @@ public class ChessGameController {
                 case 4 -> valueList.addAll(List.of(1, 2, 3, 4));  // Bishops, King and Queen
                 case 6 -> valueList.addAll(List.of(1, 2, 3, 4, 5, 6));  // Knights, Bishops, King and Queen
                 case 8 -> valueList.addAll(List.of(1, 2, 3, 4, 5, 6, 7, 8));  // Rooks, Knights, Bishops, King and Queen
-                case 10 -> valueList.addAll(List.of(9, 10, 11, 12, 13, 14, 15, 16));  // Pawns
+                case 10 -> valueList.addAll(List.of(1, 2, 9, 10, 11, 12, 13, 14, 15, 16));  // Pawns, King and Queen
                 case 16 -> {
                     for (int i = 1; i <= 16; i++) {
                         valueList.add(i); // Rooks, Knights, Bishops, King, Queen and Pawns
@@ -50,9 +50,9 @@ public class ChessGameController {
                 }
                 default -> throw new ChessGameException("---> MESSAGE: Invalid number of pieces");
             }
+
             Collections.shuffle(valueList); // Aleatory values
             return valueList;
-
         } catch (ChessGameException e) {
             throw new RuntimeException(e);
         }

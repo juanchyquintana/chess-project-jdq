@@ -19,12 +19,11 @@ public class Knight extends Piece {
     }
 
     @Override
-    public void insertPiece(Board board, String color) {
+    public void insertPiece(Board board, String color, int column) {
         Color pieceColor = getColor(color);
         int row = PieceController.setRow(color);
 
-        board.getSquares(row, 1).setPiece(new Knight(pieceColor));
-        board.getSquares(row, 6).setPiece(new Knight(pieceColor));
+        board.getSquares(row, column).setPiece(new Knight(pieceColor));
     }
 
     @Override

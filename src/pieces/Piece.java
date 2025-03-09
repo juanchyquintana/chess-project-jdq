@@ -11,7 +11,7 @@ import pieces.enums.Color;
  */
 public abstract class Piece implements Comparable<Piece> {
     protected Color color;
-    protected Object value; // Can be an Integer or String depending on game mode
+    protected Object value;
 
     /**
      * Constructs a new chess piece with the specified color.
@@ -32,7 +32,7 @@ public abstract class Piece implements Comparable<Piece> {
      * @param board The chessboard where the piece will be placed.
      * @param color The color of the piece.
      */
-    public abstract void insertPiece(Board board, String color);
+    public abstract void insertPiece(Board board, String color, int column);
 
     /**
      * Determines the piece color based on a string input.

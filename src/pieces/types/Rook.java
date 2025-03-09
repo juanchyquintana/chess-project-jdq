@@ -19,12 +19,11 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void insertPiece(Board board, String color) {
+    public void insertPiece(Board board, String color, int column) {
         Color pieceColor = getColor(color);
         int row = PieceController.setRow(color);
 
-        board.getSquares(row, 0).setPiece(new Rook(pieceColor));
-        board.getSquares(row, 7).setPiece(new Rook(pieceColor));
+        board.getSquares(row, column).setPiece(new Rook(pieceColor));
     }
 
     @Override

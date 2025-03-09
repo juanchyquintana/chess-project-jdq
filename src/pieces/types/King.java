@@ -19,11 +19,11 @@ public class King extends Piece {
     }
 
     @Override
-    public void insertPiece(Board board, String color) {
+    public void insertPiece(Board board, String color, int column) {
         Color pieceColor = getColor(color);
         int row = PieceController.setRow(color);
 
-        board.getSquares(row, 4).setPiece(new King(pieceColor));
+        board.getSquares(row, column).setPiece(new King(pieceColor));
     }
 
     @Override

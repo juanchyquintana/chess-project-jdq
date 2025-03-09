@@ -4,11 +4,9 @@ import exceptions.ChessGameException;
 import parameters.ChessParams;
 import pieces.Piece;
 import pieces.PieceController;
-import pieces.types.Pawn;
+import pieces.types.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Represents a single square on the chessboard.
@@ -82,13 +80,32 @@ public class Board {
             String pieceName = getPieceName(value);
             Piece piece = PieceController.createPiece(pieceName, params.getColor());
 
-            if (piece instanceof Pawn pawn) {
-                pawn.insertPiece(this, params.getColor(), value - 8);
-            } else {
-                piece.insertPiece(this, params.getColor());
-            }
+            insertPieces(piece, params, value);
         }
         printBoard();
+    }
+
+    /**
+     * Inserts a chess piece into the board based on its type and predefined column position.
+     * Each piece has a specific starting position on the board.
+     * @param piece  The chess piece to be inserted.
+     * @param params The chess game parameters, including piece color.
+     * @param value  The numeric value representing the piece in the game's list.
+     */
+    private void insertPieces(Piece piece, ChessParams params, int value) {
+        if (piece instanceof Pawn pawn) {
+            pawn.insertPiece(this, params.getColor(), value - 8);
+        } else if (piece instanceof Bishop bishop) {
+            bishop.insertPiece(this, params.getColor(), value == 2 ? 2 : 5);
+        } else if (piece instanceof Knight knight) {
+            knight.insertPiece(this, params.getColor(), value == 4 ? 1 : 6);
+        } else if (piece instanceof Rook rook) {
+            rook.insertPiece(this, params.getColor(), value == 6 ? 0 : 7);
+        } else if (piece instanceof Queen queen) {
+            queen.insertPiece(this, params.getColor(), 3);  // La reina siempre en columna 3
+        } else if (piece instanceof King king) {
+            king.insertPiece(this, params.getColor(), 4);  // El rey siempre en columna 4
+        }
     }
 
     /**

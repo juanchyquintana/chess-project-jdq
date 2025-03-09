@@ -1,7 +1,9 @@
-package moveSorting;
+package moveSorting.sorts;
 
 import board.Board;
 import game.ChessGameController;
+import moveSorting.AlgorithmMoveController;
+import moveSorting.IAlgorithmMove;
 import parameters.ChessParams;
 
 import java.util.List;
@@ -16,13 +18,13 @@ public class SelectionSort implements IAlgorithmMove {
     public void sort(List<Integer> values, Board board, ChessParams chessParams, AlgorithmMoveController algorithmMoveController) {
         ChessGameController controller = new ChessGameController();
 
-        int n = values.size();
-        for (int i = 0; i < n - 1; i++) {
+        int quantityValues = values.size();
+        for (int i = 0; i < quantityValues - 1; i++) {
             List<String> formattedValues = controller.formatInitialValues(values, chessParams.getListType());
-            System.out.println("Iteration" + (i + 1) + ": " + formattedValues);
+            System.out.println("Iteration " + (i + 1) + ": " + formattedValues);
 
             int minIndex = i;
-            for (int j = i + 1; j < n; j++) {
+            for (int j = i + 1; j < quantityValues; j++) {
                 if (values.get(j) < values.get(minIndex)) {
                     minIndex = j;
                 }

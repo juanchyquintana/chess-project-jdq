@@ -15,7 +15,6 @@ import java.util.Map;
 public class ChessParamsValidator {
     /**
      * Validates the main chess parameters: number of pieces, color, and type.
-     *
      * @param parameters The ChessParams object containing game settings.
      * @throws ChessGameException if any parameter is invalid.
      */
@@ -29,7 +28,6 @@ public class ChessParamsValidator {
 
     /**
      * Validates if the provided number of pieces, color, and type are allowed.
-     *
      * @param number The number of chess pieces.
      * @param color The color of the pieces (e.g., 'b', 'B', 'w', 'W').
      * @param types The type of list ('c', 'C', 'n', 'N').
@@ -57,7 +55,6 @@ public class ChessParamsValidator {
 
     /**
      * Validates that required parameters are present in the provided map.
-     *
      * @param params The map containing parameter keys and values.
      * @param keys The required parameter keys to check.
      * @throws ChessGameException if any required parameter is missing.
@@ -93,7 +90,6 @@ public class ChessParamsValidator {
 
     /**
      * Validates that a given value is an integer and falls within a specified range.
-     *
      * @param value The string representation of the numeric value.
      * @param min The minimum allowed value.
      * @param max The maximum allowed value.
@@ -116,7 +112,6 @@ public class ChessParamsValidator {
 
     /**
      * Checks if a given string represents a valid integer.
-     *
      * @param number The string to check.
      * @return true if the string is a valid integer, false otherwise.
      */
